@@ -1,1 +1,1 @@
-# Best-Hangman
+# Gamer-Hangman
