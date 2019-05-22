@@ -9,6 +9,7 @@ public class Hangman{
 	private Line r_leg;
 	private counter;
 	private EasyReader guess;
+	
 	public Hangman(String s){
 		word = s;
 		//not the actual shit
