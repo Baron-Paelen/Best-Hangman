@@ -40,24 +40,7 @@ public class Hangman implements GameState{
 		}
 		else{
 			counter++;
-			if(counter==1){
-				head.draw()
-			}
-			if(counter==2){
-				torso.draw()
-			}
-			if(counter==3){
-				l_arm.draw();
-			}
-			if(counter==4){
-				r_arm.draw();
-			}
-			if(counter==5){
-				l_leg.draw();
-			}
-			if(counter==6){
-				r_leg.draw();
-			}
+			//put the black knight shit here ( cut off his limbs here )
 		}
 	}
 
@@ -70,7 +53,7 @@ public class Hangman implements GameState{
 	}
 	//and other things probably
 	private boolean isGameOver(){
-		if(counter==6){
+		if(counter==5){
 			return true;
 		}
 		return false;
@@ -87,6 +70,9 @@ public class Hangman implements GameState{
 		return true;
 	}
 	public String toString(){
+		if(counter==5){
+			return "you have lost";
+		}
 		return Integer.toString(counter);
 	}
 }
