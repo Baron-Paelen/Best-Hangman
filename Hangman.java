@@ -1,5 +1,5 @@
 import pkg.*;
-public class Hangman{
+public class Hangman implements GameState{
 	private String word;
 	private Ellipse head;
 	private Line torso;
@@ -9,7 +9,7 @@ public class Hangman{
 	private Line r_leg;
 	private counter;
 	private EasyReader guess;
-	
+	private Player p;
 	public Hangman(String s){
 		word = s;
 		//not the actual shit
@@ -20,6 +20,7 @@ public class Hangman{
 		l_leg = new Line(250,300,50,50);
 		r_leg = new Line(250,300,50,50);
 		counter =0;
+		p = new Player("Yeet");
 	}
 	public void play(){
 		while(!isGameover()){
@@ -72,5 +73,19 @@ public class Hangman{
 			return true;
 		}
 		return false;
+	}
+	
+	public String GetWinner(){
+		return "You win!";
+	}
+	
+	public Player getCurrentPlayer(){
+		return p;
+	}
+	public boolean MakeMove(){
+		return true;
+	}
+	public String toString(){
+		return Integer.toString(counter);
 	}
 }
