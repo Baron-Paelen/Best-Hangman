@@ -10,6 +10,7 @@ public class Hangman implements GameState{
 	private counter;
 	private EasyReader guess;
 	private Player p;
+	
 	public Hangman(String s){
 		word = s;
 		//not the actual shit
