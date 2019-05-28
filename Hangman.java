@@ -1,25 +1,13 @@
 import pkg.*;
 public class Hangman implements GameState{
 	private String word;
-	private Ellipse head;
-	private Line torso;
-	private Line l_arm;
-	private Line r_arm;
-	private Line l_leg;
-	private Line r_leg;
 	private counter;
 	private EasyReader guess;
 	private Player p;
 	
 	public Hangman(String s){
 		word = s;
-		//not the actual shit
-		head = new Ellipse(250,250,50,50);
-		torso = new Torso(250,250,250,50);
-		l_arm = new Line(250,250,50,50);
-		r_arm = new Line(250,300,50,50);
-		l_leg = new Line(250,300,50,50);
-		r_leg = new Line(250,300,50,50);
+		//black knight here
 		counter =0;
 		p = new Player("Yeet");
 	}
