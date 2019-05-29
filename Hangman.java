@@ -1,7 +1,7 @@
 import pkg.*;
 public class Hangman implements GameState{
 	private String word;
-	private counter;
+	private int counter;
 	private EasyReader guess;
 	private Player p;
 	
