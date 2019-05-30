@@ -1,6 +1,6 @@
 import pkg.*;
 
-public class Player implements GameState{
+public class Player{
 	private String name;
 	
 	public Player(String aName)
