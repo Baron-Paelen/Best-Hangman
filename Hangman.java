@@ -5,7 +5,7 @@ public class Hangman implements GameState{
 	private Player p;
 	
 	public Hangman(){
-		//black knight here
+		//Black Knight here
 		counter =0;
 		p = new Player("Yeet");
 	}
