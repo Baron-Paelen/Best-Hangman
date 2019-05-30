@@ -1,13 +1,11 @@
 import pkg.*;
 public class Hangman implements GameState{
-	private String word;
 	private int counter;
 	private EasyReader guess;
 	private Player p;
 	
-	public Hangman(String s){
-		word = s;
-		//black knight here
+	public Hangman(){
+		//Black Knight here
 		counter =0;
 		p = new Player("Yeet");
 	}
@@ -32,13 +30,6 @@ public class Hangman implements GameState{
 		}
 	}
 
-	//and other things
-	public boolean guess(String s){
-		if(s.equals(word)){
-			return true;
-		}
-		return false;
-	}
 	//and other things probably
 	private boolean isGameOver(){
 		if(counter==5){
