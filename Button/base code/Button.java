@@ -8,13 +8,16 @@ public class Button<T> implements InputControl{
 	
 	private RectangleWO rect;
 	private boolean hasMethod;
+	private boolean isToggled;
 	private T[] t;
 	private ButtonRunnable<T> r;
+	private Text label;
 	
 	public Button()
 	{
 		MouseController mC = new MouseController(Canvas.getInstance(), this);
 		hasMethod = false;
+		isToggled = true;
 	}
 	
 	public Button(int x, int y, int w, int h, Color c1, Color c2)
@@ -38,6 +41,22 @@ public class Button<T> implements InputControl{
 		return rect;
 	}
 	
+	public void addLabel(String newLabel)
+	{
+		label = new Text(
+			rect.getX() + (rect.getWidth() - label.getWidth()) / 2,
+			rect.getY() + (rect.getHeight() - label.getHeight()) / 2, 
+			newLabel
+		);
+	}
+	
+	// returns the new value
+	public boolean toggle()
+	{
+		isToggled = !isToggled;
+		return isToggled;
+	}
+	
 	public void addMethod(ButtonRunnable<T> r1, T... t1)
 	{
 		r = r1;
@@ -48,12 +67,22 @@ public class Button<T> implements InputControl{
 	public void draw()
 	{
 		rect.draw();
+		if(label != null) {
+			label.draw();
+		}
+	}
+	
+	public void undraw() {
+		rect.undraw();
+		if(label != null) {
+			label.undraw();
+		}
 	}
 	
 	public void onMousePress(double x, double y)
 	{
 		if(rect.contains(x, y))
-			if(hasMethod)
+			if(hasMethod && isToggled)
 				r.runThis(t);
 	}
 	
