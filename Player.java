@@ -8,7 +8,6 @@ public class Player{
 		name = aName; 
 	}
 	
-	isGameOver
 	
 	public String getName(){
 		return name;
