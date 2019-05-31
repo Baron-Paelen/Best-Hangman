@@ -1,5 +1,4 @@
 import pkg.*;
-import Button.*;
 import java.util.*;
 public class Hangman implements GameState{
 	private int counter;
@@ -17,29 +16,29 @@ public class Hangman implements GameState{
 		Color c1 = new Color(255,255,255);
 		Color c2 = new Color(155,155,155);
 		String yeet = "";
-		
-		for(int i = 0; i <= 10; i++){
-			keyboard.add(i,new Button<String>(100+(25*i),500,25,25,c1,c2));
+		int a = 50;
+		for(int i = 0; i < 10; i++){
+			keyboard.add(i,new Button<String>(100+(a*i)+4*i,500,a,a,c1,c2));
 			yeet = QWERTY.substring(i,i+1);
 			keyboard.get(i).addLabel(yeet);
-			keybaord.get(i).draw();
+			keyboard.get(i).draw();
 		}
-		for(int i = 11; i <= 19; i++){
-			keyboard.add(i,new Button<String>(100+(25*(i-11))+6,525,25,25,c1,c2));
+		for(int i = 10; i < 19; i++){
+			keyboard.add(i,new Button<String>(100+(a*(i-10))+6+4*(i-10)+a/2,500+a+4,a,a,c1,c2));
 			yeet = QWERTY.substring(i,i+1);
 			keyboard.get(i).addLabel(yeet);
-			keybaord.get(i).draw();
+			keyboard.get(i).draw();
 		}
-		for(int i = 20; i <= 26; i++){
-			keyboard.add(i, new Button<String>(100+(25*(i-11))+12,550,25,25,c1,c2));
+		for(int i = 19; i < 26; i++){
+			keyboard.add(i, new Button<String>(100+(a*(i-19))+4*(i-19)+10+a,500+2*a+8,a,a,c1,c2));
 			yeet = QWERTY.substring(i,i+1);
 			keyboard.get(i).addLabel(yeet);
-			keybaord.get(i).draw();
+			keyboard.get(i).draw();
 		}
 		
 	}
 	public void play(){
-		while(!isGameover()){
+		while(!isGameOver()){
 			isGameOver();
 			System.out.println("Please enter a guess: ");
 			guess = new EasyReader();
@@ -47,34 +46,34 @@ public class Hangman implements GameState{
 		}
 	}
 	public void round(String s){
-		isGameOver();
-		if(guess(s)){
+		// isGameOver();
+		// if(guess(s)){
 			//add letter to text
 			//remove letter from list
 			
-		}
-		else{
-			counter++;
+		// }
+		// else{
+			// counter++;
 			//put the black knight shit here ( cut off his limbs here )
-		}
+		// }
 	}
 
 	//and other things probably
-	private boolean isGameOver(){
+	public boolean isGameOver(){
 		if(counter==5){
 			return true;
 		}
 		return false;
 	}
 	
-	public String GetWinner(){
+	public String getWinner(){
 		return "You win!";
 	}
 	
 	public Player getCurrentPlayer(){
 		return p;
 	}
-	public boolean MakeMove(){
+	public boolean makeMove(){
 		return true;
 	}
 	public String toString(){
@@ -83,7 +82,12 @@ public class Hangman implements GameState{
 		}
 		return Integer.toString(counter);
 	}
-	// public static void main(String[] args){
-		
-	// }
+	public ArrayList<String> getCurrentMoves(){
+		ArrayList<String> YEET = new ArrayList<String>();
+		return YEET;
+	}
+	
+	public static void main(String[] args){
+		Hangman h = new Hangman();
+	}
 }
