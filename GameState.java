@@ -7,7 +7,7 @@ public interface GameState{
 	
 	Player getCurrentPlayer();
 	
-	ArrayList<Point> getCurrentMoves();
+	ArrayList<String> getCurrentMoves();
 	
 	boolean makeMove();
 	

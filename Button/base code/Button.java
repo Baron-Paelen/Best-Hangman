@@ -1,3 +1,4 @@
+package Button;
 import pkg.*;
 
 interface ButtonRunnable<T> {
