@@ -1,5 +1,5 @@
 import pkg.*;
-import button.*;
+import Button.*;
 import java.util.*;
 public class Hangman implements GameState{
 	private int counter;
