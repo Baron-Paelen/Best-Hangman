@@ -34,6 +34,13 @@ public class Color
         this.green = green;
         this.blue = blue;
     }
+	
+	public Color(Color c)
+    {
+        red = c.getRed();
+        green = c.getGreen();
+		blue = c.getBlue();
+    }
 
     /**
      * Gets the red value of this color.
@@ -85,5 +92,18 @@ public class Color
 	{
 		Color c = new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 		return c;
+	}
+	
+	public Color shadedColor(int c) {
+		int nRed = red - c;
+		if(nRed < 0) nRed = 0;
+		
+		int nGreen = green - c;
+		if(nGreen < 0) nGreen = 0;
+		
+		int nBlue = blue - c;
+		if(nBlue < 0) nBlue = 0;
+		
+		return new Color(nRed, nGreen, nBlue);
 	}
 }

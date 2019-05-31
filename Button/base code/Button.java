@@ -9,19 +9,21 @@ public class Button<T> implements InputControl{
 	private RectangleWO rect;
 	private boolean hasMethod;
 	private boolean isToggled;
-	private boolean isDownPressedToggled;
+	private boolean isPressed;
 	private T[] t;
 	private ButtonRunnable<T> r;
 	private Text label;
-	private final Color originalColor;
-	private final Color originalOutlineColor;
+	private Color originalColor;
+	private Color originalOutlineColor;
 	
 	public Button()
 	{
 		MouseController mC = new MouseController(Canvas.getInstance(), this);
 		hasMethod = false;
 		isToggled = true;
-		isDownPressedToggled = true;
+		isPressed = false;
+		originalColor = new Color(255, 255, 255);
+		originalOutlineColor = new Color(255, 255, 255);
 	}
 	
 	public Button(int x, int y, int w, int h, Color c1, Color c2)
@@ -40,6 +42,8 @@ public class Button<T> implements InputControl{
 		rect = new RectangleWO(wo.getX(), wo.getY(), wo.getWidth(), wo.getHeight(), 4);
 		rect.setColor(wo.getColor());
 		rect.setOutlineColor(wo.getOutlineColor());
+		originalColor = new Color(wo.getColor());
+		originalOutlineColor = new Color(wo.getOutlineColor());
 	}
 	
 	public RectangleWO getRect()
@@ -64,11 +68,11 @@ public class Button<T> implements InputControl{
 	}
 	
 	// returns the new value
-	public boolean toggleDownPress()
-	{
-		isDownPressedToggled = !isDownPressedToggled;
-		return isDownPressedToggled;
-	}
+	// public boolean toggleDownPress()
+	// {
+		// isDownPressedToggled = !isDownPressedToggled;
+		// return isDownPressedToggled;
+	// }
 	
 	public void addMethod(ButtonRunnable<T> r1, T... t1)
 	{
@@ -97,11 +101,10 @@ public class Button<T> implements InputControl{
 	{
 		if(rect.contains(x, y)) {
 			if(hasMethod && isToggled) {
+				isPressed = true;
 				r.runThis(t);
-				tempColor = rect.getColor().shadedColor(32);
-				tempOutlineColor = rect.getOutlineColor().shadedColor(32);
-				rect.setColor(tempColor);
-				rect.setOutlineColor(tempOutlineColor);
+				rect.setColor(rect.getColor().shadedColor(32));
+				rect.setOutlineColor(rect.getOutlineColor().shadedColor(32));
 			}
 		}
 	}
@@ -109,6 +112,7 @@ public class Button<T> implements InputControl{
 	public void onMouseRelease(double x, double y)
 	{
 		if(isPressed) {
+			isPressed = false;
 			rect.setColor(originalColor);
 			rect.setOutlineColor(originalOutlineColor);
 		}
