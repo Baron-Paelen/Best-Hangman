@@ -5,7 +5,7 @@ public class HangmanPlayer {
 	
 	public HangmanPlayer(String aName)
 	{ 
-		name = aName		
+		name = aName;		
 	}
 	
 	public String getName(){
