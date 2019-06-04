@@ -120,6 +120,10 @@ public class Button<T> implements InputControl{
 			rect.setOutlineColor(originalOutlineColor);
 		}
 	}
+
+	public Text getLabel() {
+		return label;
+	}
 	public void onMouseDrag(double x, double y){}
 	public void onMouseMove(double x, double y){}
 	public void onMouseEnter(double x, double y){}
