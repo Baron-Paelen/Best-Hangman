@@ -29,17 +29,17 @@ public class Guess extends Word {
 
 	public boolean doGuess(char g) {
 		for (char x : letters) 
-			if (g.equals("x")) { 
+			if (g == x) { 
 				//correct guess should invalidate the chosen button
 
 				unchosenLetters.remove(x);
-				Hangman.keyboard.get(Hangman.keyboard.getIndexOf());
+				// Hangman.keyboard.get(Hangman.keyboard.getIndexOf());
 				return true;
 			} else {
 				//someone mark letter wrong
 
 				unchosenLetters.remove(x);
-				Hangman.keyboard.remove(keyboard.contains(x));
+				// Hangman.keyboard.remove(keyboard.contains(x));
 				return false;
 			};
 	}
