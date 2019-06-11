@@ -38,6 +38,7 @@ public class Hangman implements GameState{
 		for(int i = 10; i < 19; i++){
 			keyboard.add(i,new Button(100+(a*(i-10))+6+4*(i-10)+a/2,500+a+4,a,a,c1,c2));
 			final String yeet = QWERTY.substring(i,i+1);
+			final int inter = i;
 			keyboard.get(i).addMethod(new Runnable() {
 				public void run() {
 					g.doGuess(yeet.charAt(0));
@@ -50,6 +51,7 @@ public class Hangman implements GameState{
 		for(int i = 19; i < 26; i++){
 			keyboard.add(i, new Button(100+(a*(i-19))+4*(i-19)+10+a,500+2*a+8,a,a,c1,c2));
 			final String yeet = QWERTY.substring(i,i+1);
+			final int inter = i;
 			keyboard.get(i).addMethod(new Runnable() {
 				public void run() {
 					g.doGuess(yeet.charAt(0));
