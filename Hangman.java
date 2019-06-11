@@ -126,6 +126,12 @@ public class Hangman implements GameState{
 	// }
 	
 	public static void main(String[] args){
-		Hangman h = new Hangman();
+		//Hangman h = new Hangman();
+		Guess g = new Guess();
+		String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		char[] abc = alpha.toCharArray();
+		for(char a : abc) {
+			g.doGuess(a);
+		}
 	}
 }
