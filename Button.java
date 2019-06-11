@@ -49,10 +49,11 @@ public class Button implements InputControl{
 	public void addLabel(String newLabel)
 	{
 		label = new Text(
-			rect.getX() + (rect.getWidth() - label.getWidth()) / 2,
-			rect.getY() + (rect.getHeight() - label.getHeight()) / 2, 
+			rect.getX(),
+			rect.getY(), 
 			newLabel
 		);
+		label.translate((rect.getWidth() - label.getWidth()) / 2, (rect.getHeight() - label.getHeight()) / 2);
 	}
 	
 	// returns the new value
@@ -64,7 +65,6 @@ public class Button implements InputControl{
 	
 	public void addMethod(Runnable toRun)
 	{
-		System.out.println("t1");
 		r = toRun;
 	}
 	
@@ -86,11 +86,8 @@ public class Button implements InputControl{
 	
 	public void onMousePress(double x, double y)
 	{
-		System.out.println("t2");
 		if(rect.contains(x, y)) {
-			System.out.println("t3");
 			if(isToggled) {
-				System.out.println("t4");
 				isPressed = true;
 				if(r != null) {
 					new Thread(r).start();

@@ -4,42 +4,58 @@ public class Hangman implements GameState{
 	private int counter;
 	private EasyReader guess;
 	private Player p;
-	public ArrayList<Button<String>> keyboard;
-	public ArrayList<ButtonRunnable<String>> buttonRunnables;
+	public ArrayList<Button> keyboard;
+	//public ArrayList<ButtonRunnable<String>> buttonRunnables;
 	public String QWERTY;
+	//private volatile String yeet;
+	private Guess g;
 	
 	public Hangman(){
 		//Black Knight here
 		counter =0;
+		g = new Guess();
+		//g.makeBoxes();
 		p = new Player("Yeet");
 		keyboard = new ArrayList<>();
-		buttonRunnables = new ArrayList<>();
+		//buttonRunnables = new ArrayList<>();
 		QWERTY = "QWERTYUIOPASDFGHJKLZXCVBNM";
 		Color c1 = new Color(255,255,255);
 		Color c2 = new Color(155,155,155);
-		String yeet = "";
 		int a = 50;
 		for(int i = 0; i < 10; i++){
-			buttonRunnables.add(Hangman::pressLetter);
-			keyboard.add(i,new Button<String>(100+(a*i)+4*i,500,a,a,c1,c2));
-			yeet = QWERTY.substring(i,i+1);
-			keyboard.get(i).addMethod(buttonRunnables.get(i), yeet);
+			keyboard.add(i,new Button(100+(a*i)+4*i,500,a,a,c1,c2));
+			final String yeet = QWERTY.substring(i,i+1);
+			final int inter = i;
+			keyboard.get(i).addMethod(new Runnable() {
+				public void run() {
+					g.doGuess(yeet.charAt(0));
+					keyboard.get(inter).toggle();
+				}
+			});
 			keyboard.get(i).addLabel(yeet);
 			keyboard.get(i).draw();
 		}
 		for(int i = 10; i < 19; i++){
-			buttonRunnables.add(Hangman::pressLetter);
-			keyboard.add(i,new Button<String>(100+(a*(i-10))+6+4*(i-10)+a/2,500+a+4,a,a,c1,c2));
-			yeet = QWERTY.substring(i,i+1);
-			keyboard.get(i).addMethod(buttonRunnables.get(i), yeet);
+			keyboard.add(i,new Button(100+(a*(i-10))+6+4*(i-10)+a/2,500+a+4,a,a,c1,c2));
+			final String yeet = QWERTY.substring(i,i+1);
+			keyboard.get(i).addMethod(new Runnable() {
+				public void run() {
+					g.doGuess(yeet.charAt(0));
+					keyboard.get(inter).toggle();
+				}
+			});
 			keyboard.get(i).addLabel(yeet);
 			keyboard.get(i).draw();
 		}
 		for(int i = 19; i < 26; i++){
-			buttonRunnables.add(Hangman::pressLetter);
-			keyboard.add(i, new Button<String>(100+(a*(i-19))+4*(i-19)+10+a,500+2*a+8,a,a,c1,c2));
-			yeet = QWERTY.substring(i,i+1);
-			keyboard.get(i).addMethod(buttonRunnables.get(i), yeet);
+			keyboard.add(i, new Button(100+(a*(i-19))+4*(i-19)+10+a,500+2*a+8,a,a,c1,c2));
+			final String yeet = QWERTY.substring(i,i+1);
+			keyboard.get(i).addMethod(new Runnable() {
+				public void run() {
+					g.doGuess(yeet.charAt(0));
+					keyboard.get(inter).toggle();
+				}
+			});
 			keyboard.get(i).addLabel(yeet);
 			keyboard.get(i).draw();
 		}
@@ -100,12 +116,12 @@ public class Hangman implements GameState{
 		return YEET;
 	}
 	
-	public static void pressLetter(String... a)
-	{
-		if(a.length > 0) {
-			System.out.println(a[0]);
-		}
-	}
+	// public static void pressLetter(String... a)
+	// {
+		// if(a.length > 0) {
+			// System.out.println(a[0]);
+		// }
+	// }
 	
 	public static void main(String[] args){
 		Hangman h = new Hangman();
