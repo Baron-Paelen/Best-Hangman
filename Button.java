@@ -1,20 +1,15 @@
 import pkg.*;
 
-interface ButtonRunnable<T> {
-	void runThis(T... list);
-}
-
-public class Button<T> implements InputControl{
+public class Button implements InputControl{
 	
 	private RectangleWO rect;
 	private boolean hasMethod;
 	private boolean isToggled;
 	private boolean isPressed;
-	private T[] t;
-	private ButtonRunnable<T> r;
 	private Text label;
 	private Color originalColor;
 	private Color originalOutlineColor;
+	private Runnable r;
 	
 	public Button()
 	{
@@ -54,13 +49,10 @@ public class Button<T> implements InputControl{
 	public void addLabel(String newLabel)
 	{
 		label = new Text(
-			// rect.getX() + (rect.getWidth() - label.getWidth()) / 2,
-			// rect.getY() + (rect.getHeight() - label.getHeight()) / 2,
-			0,
-			0,					
+			rect.getX() + (rect.getWidth() - label.getWidth()) / 2,
+			rect.getY() + (rect.getHeight() - label.getHeight()) / 2, 
 			newLabel
 		);
-		label.translate(rect.getX() + (rect.getWidth() - label.getWidth()) / 2,rect.getY() + (rect.getHeight() - label.getHeight()) / 2);
 	}
 	
 	// returns the new value
@@ -70,18 +62,10 @@ public class Button<T> implements InputControl{
 		return isToggled;
 	}
 	
-	// returns the new value
-	// public boolean toggleDownPress()
-	// {
-		// isDownPressedToggled = !isDownPressedToggled;
-		// return isDownPressedToggled;
-	// }
-	
-	public void addMethod(ButtonRunnable<T> r1, T... t1)
+	public void addMethod(Runnable toRun)
 	{
-		r = r1;
-		t = t1;
-		hasMethod = true;
+		System.out.println("t1");
+		r = toRun;
 	}
 	
 	public void draw()
@@ -102,10 +86,15 @@ public class Button<T> implements InputControl{
 	
 	public void onMousePress(double x, double y)
 	{
+		System.out.println("t2");
 		if(rect.contains(x, y)) {
-			if(hasMethod && isToggled) {
+			System.out.println("t3");
+			if(isToggled) {
+				System.out.println("t4");
 				isPressed = true;
-				r.runThis(t);
+				if(r != null) {
+					new Thread(r).start();
+				}
 				rect.setColor(rect.getColor().shadedColor(32));
 				rect.setOutlineColor(rect.getOutlineColor().shadedColor(32));
 			}
@@ -119,10 +108,6 @@ public class Button<T> implements InputControl{
 			rect.setColor(originalColor);
 			rect.setOutlineColor(originalOutlineColor);
 		}
-	}
-
-	public Text getLabel() {
-		return label;
 	}
 	public void onMouseDrag(double x, double y){}
 	public void onMouseMove(double x, double y){}
