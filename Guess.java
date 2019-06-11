@@ -17,9 +17,9 @@ public class Guess extends Word {
 
 	private void makeBoxes(){
 		for (int i = 0; i < word.length(); i++) {
-			if(!letters.equals(" ")) {
+			if(letters.equals(" ")) {
 				boxes.add(new Text(100 + i*10, 200, " "));
-			} else if(!letters.equals("-")) {
+			} else if(letters.equals("-")) {
 				letters.equals("-");
 			} else 
 				boxes.add(new Text(100 + i*10, 200, "_"));
