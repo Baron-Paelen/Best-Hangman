@@ -34,8 +34,6 @@ public class Guess extends Word {
 				for (int j = 0; j < letters.length; j++) {
 					boxes.get(i).setText(g + "");
 				}
-				// System.out.println(unchosenLetters.size());
-				// System.out.println(letters[i]);
 				System.out.println("Correct Letter: " + g);
 				
 				unchosenLetters.remove(Character.toString(letters[i]));
